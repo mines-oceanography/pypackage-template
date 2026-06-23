@@ -1,0 +1,90 @@
+# Copier settings
+_envops:
+  trim_blocks: true
+  lstrip_blocks: true
+_subdirectory: template
+
+# Questions
+project_title:
+    type: str
+    placeholder: "Mines Oceanography's Modern Data Standards"
+    help: What is your project title? This title will be used in places such as documentation and the README landing page. There are no restrictions on characters.
+project_name:
+    type: str
+    placeholder: "MinesOcean-Modern-Data"
+    help: What is your project name? This is typically the name of the repository and the name registered on PyPI. You can use upper-case and hyphens, but don't use spaces or special characters.
+project_slug:
+    type: str
+    default: "{{ project_name | lower | replace(' ', '-') | regex_replace('[-]+', '_') }}"
+    help: What is your module/library name, i.e. how it will be imported inside Python? For instance, if the package name was MinesOcean-reVRt, you might want to use `revrt` here, so that inside Python it would be `import revrt`. Use only lower-case, no hyphens, no spaces, and no special characters. Prefer a single word.
+    # validator: >-
+    #     {% if not (project_name | regex_search('^[a-z][a-z0-9\-]+$')) %}
+    #     project_name must start with a letter, followed one or more letters, digits or dashes all lowercase.
+    #     {% endif %}
+package_short_description:
+    type: str
+    placeholder: "A short description of your package"
+    help: What is your package short description?
+author_first_name:
+    type: str
+    placeholder: "Bia"
+    help: What is your given (first) name?
+author_family_name:
+    type: str
+    placeholder: "Villas Boas"
+    help: What is your family (last) name?
+email:
+    type: str
+    placeholder: "villasboas@mines.edu"
+    help: What is your email address?
+orcid:
+    type: str
+    placeholder: "0000-0002-6765-0708"
+    help: What is your ORCID? (optional)
+repository:
+    type: str
+    default: "https://github.com/mines-oceanography/{{ project_name }}"
+    help: What is the repository URL?
+github_username:
+    type: str
+    placeholder: "biavillasboas"
+    help: What is your GitHub username?
+requires_python:
+    type: str
+    choices:
+        - "3.9"
+        - "3.10"
+        - "3.11"
+        - "3.12"
+        - "3.13"
+        - "3.14"
+    default: "3.12"
+    help: What is the minimum Python version required?
+command_line_interface:
+    type: str
+    default: "Click"
+    choices:
+        - Click
+        - Typer
+        # - Argparse
+        # - No command-line interface
+    help: Which command line interface do you want to use?
+project_license:
+    type: str
+    default: "BSD-3-Clause"
+    choices:
+        - MIT
+        - Apache-2.0
+        - BSD-3-Clause
+        - GPL-3.0
+        - Apache-2.0 or MIT
+        - No license
+    help: Which license do you want to use?
+use_pre_commit:
+    type: bool
+    default: true
+    help: Do you want to use pre-commit for code formatting and linting?
+include_checklist:
+    type: bool
+    default: true
+    help: Do you want to include a checklist file to help guide you to finish setting up the repository?

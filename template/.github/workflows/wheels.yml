@@ -1,0 +1,37 @@
+name: Release Wheels
+
+permissions: write-all
+
+on:
+  release:
+    types: [created, published]
+
+jobs:
+  build_wheels:
+    name: Build wheels
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: prefix-dev/setup-pixi@82d477f15f3a381dbcc8adc1206ce643fe110fb7 #v0.9.3
+        with:
+          pixi-version: v0.59.0
+          frozen: true
+          cache: true
+          cache-write: false
+          environments: dev
+
+      - name: Build and publish to PyPi
+        run: pixi run -e dev publish-pypi
+
+      # if it matches a Python release tag, upload to github releases
+      - name: Release
+        uses: fnkr/github-action-ghr@v1
+        env:
+          GHR_PATH: dist/
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

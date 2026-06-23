@@ -1,0 +1,26 @@
+"""Unit tests for `{{ project_slug }}` package
+
+Unit tests should test individual functions and methods to ensure they
+work as expected. These tests are typically fast to run and should not
+require any external resources.
+"""
+
+import pytest
+
+import {{ project_slug }}
+
+
+@pytest.fixture
+def response():
+    """Sample pytest fixture
+
+    See more at: http://doc.pytest.org/en/latest/fixture.html
+    """
+    # import requests
+    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+
+
+def test_content(response):
+    """Sample pytest unit test with the pytest fixture as an argument"""
+    # from bs4 import BeautifulSoup
+    # assert 'GitHub' in BeautifulSoup(response.content).title.string

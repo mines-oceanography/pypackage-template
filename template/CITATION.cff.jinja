@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+title: "{{ project_title }}"
+message: If you use this software, please cite it using these metadata.
+authors:
+  - given-names: {{ author_first_name }}
+    family-names: {{ author_family_name }}
+    affiliation: Colorado School of Mines
+    orcid: https://orcid.org/{{ orcid }}
+version: 0.1.0
+doi: (will create one if we ever go public)
+date-released: 2024-06-02
+repository-code: {{ repository }}
+license: {{ project_license }}
+references:
+  - title: "Citation File Format"
+    type: article
+    doi: 10.5281/zenodo.5171937
+    description: The versioned DOI for the version 1.2.0 of the Citation File Format.
+  - title: "How to fine tune the DOI record on Zenodo"
+    type: generic
+    doi: 10.5281/zenodo.3981501
+  - title: "numpy"
+    type: article
+    doi: 10.1038/s41586-020-2649-2
+  - title: "xarray"
+    type: software
+    version: 0.19.0
+    doi: 10.5281/zenodo.5130718
